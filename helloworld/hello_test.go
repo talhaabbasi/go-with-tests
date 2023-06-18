@@ -16,17 +16,20 @@ func TestHelloPerson(t *testing.T) {
 		got := HelloPerson("Talha")
 		want := "Hello, Talha"
 
-		if got != want {
-			t.Errorf("got %q want %q", got, want)
-		}
+		assertCorrectMessage(t, got, want)
 	})
 
 	t.Run("saying hello with empty string", func(t *testing.T) {
 		got := HelloPerson("")
 		want := "Hello, World"
 
-		if got != want {
-			t.Errorf("got %q want %q", got, want)
-		}
+		assertCorrectMessage(t, got, want)
 	})
+}
+
+func assertCorrectMessage(t testing.TB, got, want string) {
+	t.Helper()
+	if got != want {
+		t.Errorf("got %q want %q", got, want)
+	}
 }
