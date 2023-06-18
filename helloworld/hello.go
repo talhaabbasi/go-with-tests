@@ -5,7 +5,7 @@ import "fmt"
 const englishHelloPrefix = "Hello, "
 
 func Hello() string {
-	return englishHelloPrefix + "world"
+	return englishHelloPrefix + "World"
 }
 
 func HelloPerson(name string) string {
