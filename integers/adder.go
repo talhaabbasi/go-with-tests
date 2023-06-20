@@ -1,5 +1,5 @@
 package integers
 
 func Add(a, b int) int {
-	return 4
+	return a + b
 }
