@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
@@ -57,4 +58,42 @@ func TestSumAllTails(t *testing.T) {
 		checkSums(t, got, want)
 	})
 
+}
+
+func BenchmarkSum(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		numbers := []int{1, 2, 3, 4, 5}
+		Sum(numbers)
+	}
+}
+
+func ExampleSum() {
+	numbers := []int{1, 2, 3, 4, 5}
+	repeats := Sum(numbers)
+	fmt.Println(repeats)
+	// Output: 15
+}
+
+func BenchmarkSumAll(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		SumAll([]int{1, 2}, []int{0, 29})
+	}
+}
+
+func ExampleSumAll() {
+	repeats := SumAll([]int{1, 2}, []int{0, 29})
+	fmt.Println(repeats)
+	// Output: {3, 29}
+}
+
+func BenchmarkSumAllTails(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		SumAllTails([]int{1, 2}, []int{0, 29})
+	}
+}
+
+func ExampleSumAllTails() {
+	repeats := SumAllTails([]int{1, 2}, []int{0, 29})
+	fmt.Println(repeats)
+	// Output: {0, 29}
 }
