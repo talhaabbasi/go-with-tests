@@ -1,6 +1,9 @@
 package structs
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestPerimeter(t *testing.T) {
 	rectangle := Rectangle{10.0, 10.0}
@@ -32,4 +35,60 @@ func TestArea(t *testing.T) {
 			}
 		})
 	}
+}
+
+func BenchmarkPerimeter(b *testing.B) {
+	rectangle := Rectangle{10.0, 10.0}
+	for i := 0; i < b.N; i++ {
+		Perimeter(rectangle)
+	}
+}
+
+func ExamplePerimeter() {
+	rectangle := Rectangle{10.0, 10.0}
+	repeats := Perimeter(rectangle)
+	fmt.Println(repeats)
+	// Output: 40
+}
+
+func BenchmarkRectangleArea(b *testing.B) {
+	rectangle := Rectangle{10.0, 10.0}
+	for i := 0; i < b.N; i++ {
+		rectangle.Area()
+	}
+}
+
+func ExampleRectangleArea() {
+	rectangle := Rectangle{10.0, 10.0}
+	repeats := rectangle.Area()
+	fmt.Println(repeats)
+	// Output: 100
+}
+
+func BenchmarkCircleArea(b *testing.B) {
+	circle := Circle{10.0}
+	for i := 0; i < b.N; i++ {
+		circle.Area()
+	}
+}
+
+func ExampleCircleArea() {
+	circle := Circle{10.0}
+	repeats := circle.Area()
+	fmt.Println(repeats)
+	// Output: 314.1592653589793
+}
+
+func BenchmarkTriangleArea(b *testing.B) {
+	triangle := Triangle{10.0, 10.0}
+	for i := 0; i < b.N; i++ {
+		triangle.Area()
+	}
+}
+
+func ExampleTriangleArea() {
+	triangle := Triangle{10.0, 10.0}
+	repeats := triangle.Area()
+	fmt.Println(repeats)
+	// Output: 50
 }
